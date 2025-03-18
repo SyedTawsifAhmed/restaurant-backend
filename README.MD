@@ -1,3 +1,3 @@
 # Restaurant API
 
-[Draft](draft.md)
+# [Draft](draft.md)
