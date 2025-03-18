@@ -2,9 +2,10 @@ import "dotenv/config";
 import createError from "http-errors";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+
 const PORT = process.env.PORT || 4000;
 const dbURL =
-  process.env.dbURL || "mongodb://localhost:27017/backendTemplateDB";
+  process.env.dbURL || "mongodb://localhost:27017/restaurant";
 
 const jwt_access_exp = process.env.JWT_ACCESS_EXP || "1h";
 const jwt_access_secret =
@@ -21,7 +22,7 @@ const process_signup_sec =
 const smtp_username = process.env.smtp_username || "joy600508@gmail.com";
 const smtp_password = process.env.smtp_password || "your-password";
 
-const client_url = process.env.CLIENT_URL || "http://localhost:3000";
+const client_url = process.env.CLIENT_URL || "http://localhost:5000";
 
 const jwt_password_reset_exp = process.env.JWT_PASSWORD_RESET_EXP || "10m";
 const jwt_password_reset_secret =
