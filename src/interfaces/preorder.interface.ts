@@ -1,12 +1,12 @@
 import { Document } from "mongoose";
 
+interface IPreOrderItem {
+  menuItemId: string;
+  quantity: number;
+}
+
 export interface IPreorder extends Document {
   reservationId: string;
-  items: [
-    { 
-    menuItemId: string;
-    quantity: number; 
-    }
-  ];
+  items: [IPreOrderItem];
   totalAmount: number;
 }
