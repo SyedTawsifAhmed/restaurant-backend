@@ -1,5 +1,8 @@
+
 import { z } from "zod";
 
+// Deprecated
+`
 export const validateProcessSignUpSchema = z.object({
   name: z.string(),
   email: z.string().email(),
@@ -13,7 +16,8 @@ export const validateSignUp = z.object({
     .string()
     .min(10, { message: "Token must be at least 10 characters long" })
     .regex(jwtPattern, { message: "Invalid JWT token format" }),
-});
+});`
+
 export const validateUserUpdate = z.object({
   name: z.string().optional(),
 });
