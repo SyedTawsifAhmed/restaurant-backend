@@ -1,8 +1,10 @@
-import { createError, jwt, jwt_password_reset_secret, bcrypt } from "@/config";
+// deprecated
+`import { createError, jwt, jwt_password_reset_secret, bcrypt } from "@/config";
 import User from "@/models/user.model";
 import { successResponse } from "@/utils/response";
 import { Response, Request, NextFunction } from "express";
 import { JwtPayload } from "jsonwebtoken";
+
 
 export const handleResetPassword = async (
   req: Request,
@@ -37,3 +39,4 @@ export const handleResetPassword = async (
     next(error);
   }
 };
+`

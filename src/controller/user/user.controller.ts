@@ -29,6 +29,7 @@ export const handleGetLoggedInUser = async (
   }
 };
 
+`
 export const handleFindAllUsers = async (
   req: Request,
   res: Response,
@@ -74,25 +75,7 @@ export const handleFindAllUsers = async (
     next(error);
   }
 };
-
-export const handleUserDelete = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const { userId } = req.params;
-    const deletedUser = await User.findByIdAndDelete(userId);
-    if (!deletedUser) {
-      return next(createError(400, "User not deleted , Something Went Wrong"));
-    }
-    successResponse(res, {
-      message: "User was deleted successfully",
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+`
 
 export const handleUpdateUserProfileInfo = async (
   req: Request,
