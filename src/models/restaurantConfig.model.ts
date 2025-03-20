@@ -6,6 +6,7 @@ const restaurantConfigSchema = new Schema({
   phoneNumber: { type: String, required: true },
   address: { type: String, required: true },
   maxTables: { type: Number, required: true },
+  maxGuests: { type: Number, required: true },
   maxParkingSpots: { type: Number, required: true },
 });
 
