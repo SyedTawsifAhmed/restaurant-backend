@@ -1,5 +1,55 @@
 import Reservation from "@/models/reservation.model";
+import { timeSlots, maxGuests } from "@/config/restaurant";
 import { findWithId } from "@/services";
+import { getAllTables } from "../table/table.service";
+
+const compareTimeSlots = (time: Date) => {
+  const hours = time.getHours().toString().padStart(2, "0");
+  const minutes = time.getMinutes().toString().padStart(2, "0");
+  return timeSlots.includes(`${hours}:${minutes}`);
+};
+
+export const checkAvailability = async (time: Date, guestCount: number) => {
+  try {
+    if (!compareTimeSlots(time)) {
+      throw new Error("Invalid time slot");
+    }
+
+    const timeReservations = await Reservation.find({ reservationTime: time });
+    const tables = await getAllTables();
+
+    let reservedGuests = timeReservations.reduce(
+      (sum, res) => sum + res.guestCount, 0
+    );
+
+    if (reservedGuests + guestCount > maxGuests) {
+      throw new Error("Guest count exceeds maximum");
+    }
+
+    const availableTables = tables.filter((table) => table.available);
+    if (availableTables.length === 0) {
+      throw new Error("No available tables");
+    }
+
+    let remainingGuests = guestCount;
+    const selectedTables = [];
+
+    for (const table of availableTables.sort((a, b) => a.seats - b.seats)) {
+      if (remainingGuests <= 0) break;
+      selectedTables.push(table);
+      remainingGuests -= table.seats;
+    }
+
+    if (remainingGuests > 0) {
+      throw new Error("Not enough table capacity");
+    }
+
+    return selectedTables;
+  } catch (error) {
+    throw error;
+  }
+};
+
 
 export const createReseveration = async (data: any) => {
   try {

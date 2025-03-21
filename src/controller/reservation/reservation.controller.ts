@@ -6,6 +6,7 @@ import {
   createReseveration,
   getReservation, 
   getAllReservations,
+  checkAvailability,
 } from "@/services/reservation/reservation.service";
 
 // Work in progress
@@ -36,6 +37,7 @@ export const handleCreateReservation = async (
       parking 
     } = validReservation;
     const reservationCode = Math.floor(Math.random() * 1000000).toString();
+    const tables = await checkAvailability(reservationTime, guestCount);
     const reservationRequest = {
       name,
       email,
@@ -44,11 +46,12 @@ export const handleCreateReservation = async (
       specialRequest,
       reservationTime,
       parking,
+      tables,
       preOrderId: null,
       reservationCode
     }
     // 
-    
+
     await findConflicts(reservationRequest);
     const reservation = await createReseveration(reservationRequest);
     successResponse(res, {
