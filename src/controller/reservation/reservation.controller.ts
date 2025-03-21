@@ -25,8 +25,32 @@ export const handleCreateReservation = async (
   ) => {
   try {
     const validReservation = validateReservation.parse(req.body);
-    await findConflicts(validReservation);
-    const reservation = await createReseveration(validReservation);
+    // Temporary
+    const { 
+      name, 
+      email, 
+      phone, 
+      guestCount, 
+      specialRequest, 
+      reservationTime,
+      parking 
+    } = validReservation;
+    const reservationCode = Math.floor(Math.random() * 1000000).toString();
+    const reservationRequest = {
+      name,
+      email,
+      phone,
+      guestCount,
+      specialRequest,
+      reservationTime,
+      parking,
+      preOrderId: null,
+      reservationCode
+    }
+    // 
+    
+    await findConflicts(reservationRequest);
+    const reservation = await createReseveration(reservationRequest);
     successResponse(res, {
       message: "Reservation created successfully",
       payload: reservation,

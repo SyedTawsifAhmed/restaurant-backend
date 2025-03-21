@@ -3,9 +3,6 @@ import Table from "@/models/table.model";
 export const createTable = async (data: any) => {
   try {
     const newTable = new Table(data);
-    if (!newTable) {
-      throw new Error("Table could not be created");
-    }
     return await newTable.save();
   } catch (error) {
     throw error;
