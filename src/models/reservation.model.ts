@@ -9,7 +9,7 @@ const reservationSchema = new Schema<IReservation>(
     guestCount: { type: Number, required: true },
     specialRequest: { type: String, required: false },
     reservationTime: { type: Date, required: true },
-    tableNumbers: { type: Number, required: false },
+    tables: { type: [String], required: false },
     parking: { type: Boolean, required: true },
     preOrderId: { type: String, required: false },
     reservationCode: { type: String, required: true },

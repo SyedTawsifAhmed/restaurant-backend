@@ -7,7 +7,7 @@ export interface IReservation extends Document {
   guestCount: number;
   specialRequest: string | null;
   reservationTime: Date;
-  tableNumbers: number | null;
+  tables: [string];
   parking: boolean;
   preOrderId: string | null;
   reservationCode: string;  
