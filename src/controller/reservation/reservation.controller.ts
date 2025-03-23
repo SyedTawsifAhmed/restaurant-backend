@@ -10,15 +10,6 @@ import {
 } from "@/services/reservation/reservation.service";
 
 // Work in progress
-// Check if reservation time is available 
-// AND if the maximum number of guests is available
-// If not, throw error
-const findConflicts = (data: any) => {
-  return data;
-};
-
-// Work in progress
-// Add lock for tables
 export const handleCreateReservation = async (
   req: Request, 
   res: Response, 
@@ -52,7 +43,6 @@ export const handleCreateReservation = async (
     }
     // 
 
-    await findConflicts(reservationRequest);
     const reservation = await createReseveration(reservationRequest);
     successResponse(res, {
       message: "Reservation created successfully",

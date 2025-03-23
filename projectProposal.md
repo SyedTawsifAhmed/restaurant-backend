@@ -238,3 +238,7 @@ Contains restaurant settings that do not change frequently
 - API rate limits
 - Analytics on admin dashboard (revenue, cancellation rate, refund statistics, etc.)
 - Deployment and hosting (Vercel, other platforms)
+
+# Updates
+- Redis for locking
+- Payment before reservation (if applicable)
