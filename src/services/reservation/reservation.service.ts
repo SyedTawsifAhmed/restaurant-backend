@@ -51,7 +51,16 @@ export const checkAvailability = async (time: Date, guestCount: number) => {
 };
 
 
-export const createReseveration = async (data: any) => {
+export const createReserveration = async (data: {
+  name: string;
+  email: string;
+  phone: string;
+  guestCount: number;
+  specialRequest: string;
+  reservationTime: Date;
+  parking: boolean;
+  reservationCode: string;
+  }) => {
   try {
     const reservation = new Reservation(data);
     if (!reservation) {
@@ -75,6 +84,17 @@ export const getAllReservations = async () => {
       throw new Error("Reservations could not be fetched");
     }
     return reservations;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteReservation = async (id: string) => {
+  try {
+    const reservation = await Reservation.findByIdAndDelete(id);
+    if (!reservation) {
+      throw new Error("Reservation not found");
+    }
   } catch (error) {
     throw error;
   }

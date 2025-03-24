@@ -11,7 +11,6 @@ const reservationSchema = new Schema<IReservation>(
     reservationTime: { type: Date, required: true },
     tables: { type: [String], required: false },
     parking: { type: Boolean, required: true },
-    preOrderId: { type: String, required: false },
     reservationCode: { type: String, required: true },
   },
   { timestamps: true }

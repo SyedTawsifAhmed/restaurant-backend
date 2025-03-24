@@ -3,10 +3,11 @@ import { successResponse } from "@/utils/response";
 import { validateReservation } from "@/validators/reservation.validator";
 `import { createError } from "@/config";`
 import { 
-  createReseveration,
+  createReserveration,
   getReservation, 
   getAllReservations,
   checkAvailability,
+  deleteReservation,
 } from "@/services/reservation/reservation.service";
 
 // Work in progress
@@ -27,7 +28,10 @@ export const handleCreateReservation = async (
       reservationTime,
       parking 
     } = validReservation;
-    const reservationCode = Math.floor(Math.random() * 1000000).toString();
+    const reservationCode = Math.
+      floor(Math.random() * 1000000).
+      toString().
+      padStart(6, "0");
     const tables = await checkAvailability(reservationTime, guestCount);
     const reservationRequest = {
       name,
@@ -38,12 +42,11 @@ export const handleCreateReservation = async (
       reservationTime,
       parking,
       tables,
-      preOrderId: null,
       reservationCode
     }
     // 
 
-    const reservation = await createReseveration(reservationRequest);
+    const reservation = await createReserveration(reservationRequest);
     successResponse(res, {
       message: "Reservation created successfully",
       payload: reservation,
@@ -85,4 +88,17 @@ export const handleGetAllReservations = async (
   }
 }
 
-export const handleDeleteReservation = async () => {};
+export const handleDeleteReservation = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+  ) => {
+  try {
+    await deleteReservation(req.params.id);
+    successResponse(res, {
+      message: "Reservation deleted successfully",
+    });
+  } catch (error) {
+    next(error);
+  }
+};

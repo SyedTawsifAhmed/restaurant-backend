@@ -1,7 +1,8 @@
 import { Document } from "mongoose";
+import { IMenuItem } from "./menuItem.interface";
 
 interface IPreOrderItem {
-  menuItemId: string;
+  menuItemId: IMenuItem;
   quantity: number;
 }
 

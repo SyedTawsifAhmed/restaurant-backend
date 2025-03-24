@@ -4,7 +4,7 @@ import { IPreorder } from "@/interfaces/preorder.interface";
 const preOrderItemSchema: Schema = new Schema(
   {
     menuItemId: {
-      type: { type: String, required: true}, 
+      type: Schema.Types.ObjectId, 
       required: true,
       ref: 'MenuItem',
     },

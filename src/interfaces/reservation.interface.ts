@@ -9,6 +9,5 @@ export interface IReservation extends Document {
   reservationTime: Date;
   tables: [string];
   parking: boolean;
-  preOrderId: string | null;
   reservationCode: string;  
 }
