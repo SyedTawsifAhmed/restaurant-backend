@@ -31,13 +31,9 @@ export const getAllPayments = async () => {
 export const filterPayments = async (
   query : 'lt' | 'gt' | 'eq', 
   value: number | Date, 
-  id?: string
   ) => {
   try { 
     let filter: any = {};
-    if (id) {
-      filter._id = id;
-    }
 
     if (typeof value === "number") {
       filter.amount = query === "lt" ? { $lt: value }
