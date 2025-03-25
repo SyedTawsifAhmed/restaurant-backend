@@ -3,9 +3,10 @@ import { IPayment } from "@/interfaces/payment.interface";
 
 const paymentSchema = new Schema<IPayment>(
   {
-    reservationId: { type: String, required: true },
+    preorderId: { type: String, required: true },
     amount: { type: Number, required: true },
     paymentMethod: { type: String, enum: ['stripe'], required: true },
+    paymentMethodId: { type: String, required: true },
     paymentStatus: { 
       type: String, 
       enum: ['pending', 'completed', 'failed', 'refunded'],

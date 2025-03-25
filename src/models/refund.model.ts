@@ -3,7 +3,7 @@ import { IRefund } from "@/interfaces/refund.interface";
 
 const refundSchema = new Schema<IRefund>(
   {
-    reservationId: { type: String, required: true },
+    preOrderId: { type: String, required: true },
     paymentId: { type: String, required: true },
     refundStatus: { 
       type: String, 

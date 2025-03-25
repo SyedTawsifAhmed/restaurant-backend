@@ -3,7 +3,6 @@ import PreOrder from "@/models/preorder.model";
 export const createPreOrder = async (data: {
   reservationId: string;
   items: { menuItemId: string; quantity: number }[];
-  totalAmount: number;
   }) => {
   try {
     const newPreOrder = new PreOrder(data);

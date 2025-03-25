@@ -8,6 +8,7 @@ interface IPreOrderItem {
 
 export interface IPreorder extends Document {
   reservationId: string;
+  paymentId: string;
   items: [IPreOrderItem];
   totalAmount: number;
 }

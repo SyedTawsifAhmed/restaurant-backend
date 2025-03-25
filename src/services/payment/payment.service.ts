@@ -1,11 +1,43 @@
+import Stripe from "stripe";
 import Payment from "@/models/payment.model";
 
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+  apiVersion: "2025-02-24.acacia",
+});
+
 // Work in progress
-export const createPayment = async (paymentData: any) => {
+export const createPayment = async (paymentData: {
+  preOrderId: string;
+  amount: number;
+  paymentMethod: "stripe";
+  }) => {
   try {
-    const payment = await Payment.create(paymentData);
-    return payment;
+    const payment = new Payment(
+      {
+        preOrderId: paymentData.preOrderId,
+        paymentMethodId: null,
+        amount: paymentData.amount,
+        paymentMethod: paymentData.paymentMethod,
+        paymentStatus: "pending",
+      }
+    );
+    const charge = await stripe.paymentIntents.create({
+      amount: payment.amount,
+      currency: "usd",
+      payment_method_types: ["card"],
+      confirm: true,
+    })
+
+    payment.paymentStatus = "completed";
+    payment.paymentMethodId = charge.id;
+    await payment.save();
+
+    return { success: true, payment }
   } catch (error) {
+    await Payment.findOneAndUpdate(
+      { preorderId: paymentData.preOrderId }, 
+      { paymentStatus: "failed" }
+    );
     throw error;
   }
 };
