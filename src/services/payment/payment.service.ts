@@ -1,9 +1,5 @@
-import Stripe from "stripe";
+import { stripe } from "@/config/stripe";
 import Payment from "@/models/payment.model";
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-  apiVersion: "2025-02-24.acacia",
-});
 
 // Work in progress
 export const createPayment = async (paymentData: {
