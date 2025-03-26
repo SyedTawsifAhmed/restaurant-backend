@@ -1,7 +1,7 @@
 import { Document } from "mongoose";
 import { IMenuItem } from "./menuItem.interface";
 
-interface IPreOrderItem {
+interface IPreorderItem {
   menuItemId: IMenuItem;
   quantity: number;
 }
@@ -9,6 +9,6 @@ interface IPreOrderItem {
 export interface IPreorder extends Document {
   reservationId: string;
   paymentId: string;
-  items: [IPreOrderItem];
+  items: [IPreorderItem];
   totalAmount: number;
 }

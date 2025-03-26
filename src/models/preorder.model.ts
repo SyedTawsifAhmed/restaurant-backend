@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 import { IPreorder } from "@/interfaces/preorder.interface";
 
-const preOrderItemSchema: Schema = new Schema(
+const preorderItemSchema: Schema = new Schema(
   {
     menuItemId: {
       type: Schema.Types.ObjectId, 
@@ -15,15 +15,16 @@ const preOrderItemSchema: Schema = new Schema(
   }
 );
 
-const preOrderSchema = new Schema<IPreorder>(
+const preorderSchema = new Schema<IPreorder>(
   {
     reservationId: { type: String, required: true },
-    items: { type: [preOrderItemSchema], required: true },
+    paymentId: { type: String, required: true },
+    items: { type: [preorderItemSchema], required: true },
     totalAmount: { type: Number, required: true },
   },
   { timestamps: true }
 );
 
-const PreOrder = model<IPreorder>("PreOrder", preOrderSchema);
+const Preorder = model<IPreorder>("PreOrder", preorderSchema);
 
-export default PreOrder;
+export default Preorder;

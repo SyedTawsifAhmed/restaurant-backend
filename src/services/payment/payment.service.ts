@@ -7,17 +7,16 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 
 // Work in progress
 export const createPayment = async (paymentData: {
-  preOrderId: string;
+  preorderId: any;
   amount: number;
-  paymentMethod: "stripe";
   }) => {
   try {
     const payment = new Payment(
       {
-        preOrderId: paymentData.preOrderId,
+        preorderId: paymentData.preorderId,
         paymentMethodId: null,
         amount: paymentData.amount,
-        paymentMethod: paymentData.paymentMethod,
+        paymentMethod: "stripe",
         paymentStatus: "pending",
       }
     );
@@ -35,7 +34,7 @@ export const createPayment = async (paymentData: {
     return { success: true, payment }
   } catch (error) {
     await Payment.findOneAndUpdate(
-      { preorderId: paymentData.preOrderId }, 
+      { preorderId: paymentData.preorderId }, 
       { paymentStatus: "failed" }
     );
     throw error;
