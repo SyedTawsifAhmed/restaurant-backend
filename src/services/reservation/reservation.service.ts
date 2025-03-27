@@ -74,7 +74,12 @@ export const createReserveration = async (data: {
 };
 
 export const getReservation = async (id: string) => {
-  return await findWithId(id, Reservation);
+  try {
+    const reservation = await findWithId(id, Reservation);
+    return reservation;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const getAllReservations = async () => {

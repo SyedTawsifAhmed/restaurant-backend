@@ -89,7 +89,6 @@ export const filterPayments = async (
   } catch (error) {
     throw error;
   }
-
 };
 
 export const updatePaymentStatus = async (
