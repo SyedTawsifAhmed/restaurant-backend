@@ -42,6 +42,7 @@ export const handleGetPreorder = async (
 };
 
 export const handleGetAllPreorders = async (
+  _req: Request,
   res: Response, 
   next: NextFunction
   ) => {

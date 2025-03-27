@@ -47,6 +47,7 @@ export const handleGetPayment = async (
 };
 
 export const handleGetAllPayments = async (
+  _Req: Request,
   res: Response, 
   next: NextFunction
   ) => {

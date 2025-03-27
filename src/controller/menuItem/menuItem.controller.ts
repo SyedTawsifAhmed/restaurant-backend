@@ -47,6 +47,7 @@ export const handleGetMenuItem = async (
 };
 
 export const handleGetAllMenuItems = async (
+  _req: Request,
   res: Response, 
   next: NextFunction
   ) => {

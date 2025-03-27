@@ -44,6 +44,7 @@ export const handleGetRefund = async (
 };
 
 export const handleGetAllRefunds = async (
+  _req: Request,
   res: Response, 
   next: NextFunction
   ) => {

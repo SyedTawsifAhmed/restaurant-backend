@@ -74,6 +74,7 @@ export const handleGetReservation = async (
 };
 
 export const handleGetAllReservations = async (
+  _req: Request,
   res: Response,
   next: NextFunction
   )=> {

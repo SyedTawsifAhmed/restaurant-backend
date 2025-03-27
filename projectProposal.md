@@ -240,5 +240,5 @@ Contains restaurant settings that do not change frequently
 - Deployment and hosting (Vercel, other platforms)
 
 # Updates
-- Redis for locking
-- Payment before reservation (if applicable)
+- Logging in and testing functionalities
+- 

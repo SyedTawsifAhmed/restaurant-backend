@@ -43,7 +43,10 @@ export const handleGetTable = async (
   }
 };
 
-export const handleGetAllTables = async (res: Response, next: NextFunction) => {
+export const handleGetAllTables = async (
+  _req: Request,
+  res: Response, 
+  next: NextFunction) => {
   try {
     const tables = await getAllTables();
     successResponse(res, {
@@ -55,7 +58,10 @@ export const handleGetAllTables = async (res: Response, next: NextFunction) => {
   }
 };
 
-export const handleAvailableTables = async (res: Response, next: NextFunction) => {
+export const handleAvailableTables = async (
+  _req: Request,
+  res: Response, 
+  next: NextFunction) => {
   try {
     const tables = await availableTables();
     successResponse(res, {
@@ -67,7 +73,7 @@ export const handleAvailableTables = async (res: Response, next: NextFunction) =
   }
 }
 
-export const handlesUpdateAvailability = async (
+export const handleUpdateAvailability = async (
   req: Request, 
   res: Response, 
   next: NextFunction
