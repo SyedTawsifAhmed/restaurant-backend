@@ -24,7 +24,7 @@ app.use(limiter);
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGINS || "http://localhost:3000",
+    origin: process.env.CORS_ORIGINS || "http://localhost:5000",
     credentials: true,
     allowedHeaders: [
       "Origin",

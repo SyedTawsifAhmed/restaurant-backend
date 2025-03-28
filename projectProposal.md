@@ -241,4 +241,3 @@ Contains restaurant settings that do not change frequently
 
 # Updates
 - Logging in and testing functionalities
-- 

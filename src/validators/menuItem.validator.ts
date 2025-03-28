@@ -7,5 +7,4 @@ export const validateMenuItem = z.object({
     .number()
     .min(0, "Price must be at least 0"),
   category: z.string().min(1, "Category is required"),
-  available: z.boolean(),
 });

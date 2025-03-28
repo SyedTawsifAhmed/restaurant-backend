@@ -28,7 +28,7 @@ const routes = [
     router: tableRouter,
   },
   {
-    path: "/menu-item",
+    path: "/menu",
     router: menuItemRouter,
   },
   {
