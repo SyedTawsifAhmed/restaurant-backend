@@ -22,8 +22,7 @@ export const createPayment = async (paymentData: {
       payment_method_types: ["card"],
       confirm: true,
     })
-
-    payment.paymentStatus = "completed";
+    
     payment.paymentMethodId = charge.id;
     await payment.save();
 
