@@ -1,12 +1,22 @@
-import { client_url } from "@/config";
+import { 
+  restaurantName, 
+  restaurantPhone, 
+  restaurantHours 
+} from "@/config/restaurant";
 
-export const resetPasswordEmail = (email: string, token: string) => `
+export const reservationEmail = (data: {
+  name: string;
+  guestCount: number;
+  reservationTime: Date;
+  parking: boolean;
+  reservationCode: string;
+  }) => `
   <!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset Your Password</title>
+    <title>Activate Your Account</title>
     <style>
       body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -44,7 +54,7 @@ export const resetPasswordEmail = (email: string, token: string) => `
         line-height: 1.6;
         margin-bottom: 15px;
       }
-      .reset-link {
+      .activation-link {
         margin: 20px 0;
         padding: 15px;
         background: #f1f1f1;
@@ -90,22 +100,22 @@ export const resetPasswordEmail = (email: string, token: string) => `
   <body>
     <div class="email-container">
       <div class="email-header">
-        Reset Your Password
+        Your reservation at ${restaurantName} 
       </div>
       <div class="email-body">
-        <h2>Hello ${email},</h2>
-        <p>We received a request to reset your password. You can reset your password by clicking the button below:</p>
-        <a href="${client_url}/reset-password?token=${token}" class="btn">Reset Your Password</a>
-        <p>If the button above doesn't work, you can copy and paste the following link into your browser:</p>
-        <div class="reset-link">
-          ${client_url}/reset-password?token=${token}
-        </div>
-        <p>If you did not request a password reset, please ignore this email or contact our support team for assistance.</p>
-        <p>This link will expire in 10m for security reasons.</p>
+        <h2>Hello ${data.name},</h2>
+        <p>You have a reservation at ${restaurantName}.</p>
+        <p>Here are the details of your reservation:</p>
+        <p>Date and Time: ${data.reservationTime}</p>
+        <p>Guest Count: ${data.guestCount}</p>
+        <p>Parking: ${data.parking ? "Yes" : "No"}</p>
+        <p>Reservation Code: ${data.reservationCode}</p>
+        <p>Please use this code to check-in at the restaurant.
+         You can also use it to cancel your reservation on the website.</p>
       </div>
       <div class="email-footer">
-        <p>Thank you,<a href="https://www.demo.com">https://www.demo.com</p>
-        <p>Need help? Contact us at <a href="mailto:info@demo.com">info@demo.com</a></p>
+        <p>Need help? Contact us at 
+        ${restaurantPhone}. Hours: ${restaurantHours}</p>
       </div>
     </div>
   </body>
