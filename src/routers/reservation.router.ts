@@ -14,6 +14,6 @@ reservationRouter.post("/", isLogin, handleCreateReservation);
 reservationRouter.get("/:id", isLogin, handleGetReservation);
 reservationRouter.get("/", isLogin, handleGetAllReservations);
 reservationRouter.delete("/:id", isLogin, handleDeleteReservation);
-reservationRouter.delete("/:code", handleCancelReservation);
+reservationRouter.delete("/cancel/:code", handleCancelReservation);
 
 export default reservationRouter;
