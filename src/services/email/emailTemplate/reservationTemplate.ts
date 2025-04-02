@@ -54,33 +54,6 @@ export const reservationEmail = (data: {
         line-height: 1.6;
         margin-bottom: 15px;
       }
-      .activation-link {
-        margin: 20px 0;
-        padding: 15px;
-        background: #f1f1f1;
-        border: 1px dashed #ccc;
-        border-radius: 5px;
-        font-size: 14px;
-        word-break: break-all;
-        text-align: center;
-        color: #2e7d32;
-        font-family: monospace;
-      }
-      .btn {
-        display: inline-block;
-        margin: 20px auto;
-        padding: 10px 20px;
-        color: #ffffff;
-        background: #4caf50;
-        border-radius: 5px;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: bold;
-        text-align: center;
-      }
-      .btn:hover {
-        background: #388e3c;
-      }
       .email-footer {
         text-align: center;
         padding: 15px;
@@ -106,7 +79,7 @@ export const reservationEmail = (data: {
         <h2>Hello ${data.name},</h2>
         <p>You have a reservation at ${restaurantName}.</p>
         <p>Here are the details of your reservation:</p>
-        <p>Date and Time: ${data.reservationTime}</p>
+        <p>Date and Time: ${data.reservationTime.toLocaleString()}</p>
         <p>Guest Count: ${data.guestCount}</p>
         <p>Parking: ${data.parking ? "Yes" : "No"}</p>
         <p>Reservation Code: ${data.reservationCode}</p>
