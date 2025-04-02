@@ -1,8 +1,27 @@
 import Table from "@/models/table.model";
 
-export const createTable = async (data: any) => {
+export const checkTableExists = async (number: number) => {
   try {
-    const newTable = new Table(data);
+    const table = await Table.findOne({ number });
+    if (table) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const createTable = async (data: { number: number; seats: number }) => {
+  try {
+    if (await checkTableExists(data.number)) {
+      throw new Error("Table already exists");
+    }
+    const newTable = new Table({
+      number: data.number,
+      seats: data.seats,
+      available: true,
+    });
     return await newTable.save();
   } catch (error) {
     throw error;
