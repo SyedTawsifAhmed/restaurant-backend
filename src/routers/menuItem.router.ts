@@ -20,7 +20,7 @@ menuItemRouter.post(
 );
 menuItemRouter.get("/:id", handleGetMenuItem);
 menuItemRouter.get("/", handleGetAllMenuItems);
-menuItemRouter.put(
+menuItemRouter.patch(
   "/:id",
   isLogin,
   validateRequest(validateMenuItem),

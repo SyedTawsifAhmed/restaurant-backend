@@ -13,7 +13,7 @@ const paymentRouter: Router = Router();
 paymentRouter.post("/", handleCreatePayment);
 paymentRouter.get("/:id", handleGetPayment);
 paymentRouter.get("/", isLogin, handleGetAllPayments);
-paymentRouter.put(
+paymentRouter.patch(
   "/:id", 
   isLogin, 
   handleUpdatePaymentStatus
