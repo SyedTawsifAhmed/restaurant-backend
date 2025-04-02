@@ -17,6 +17,9 @@ export const handleCreateReservation = async (
   next: NextFunction
   ) => {
   try {
+    if (!req.body.specialRequest) {
+      req.body.specialRequest = "";
+    }
     const validReservation = validateReservation.parse(req.body);
     // Temporary
     const { 
