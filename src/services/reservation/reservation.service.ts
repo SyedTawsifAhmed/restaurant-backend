@@ -2,6 +2,7 @@ import Reservation from "@/models/reservation.model";
 import { timeSlots, maxGuests } from "@/config/restaurant";
 import { findWithId } from "@/services";
 import { getAllTables } from "../table/table.service";
+import { IReservation } from "@/interfaces/reservation.interface";
 
 const compareTimeSlots = (time: Date) => {
   const hours = time.getHours().toString().padStart(2, "0");
@@ -82,6 +83,15 @@ export const getReservation = async (id: string) => {
   }
 };
 
+export const getReservationByCode = async (code: string) => {
+  try {
+    const reservation = await Reservation.findOne({ reservationCode: code });
+    return reservation;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export const getAllReservations = async () => {
   try {
     const reservations = await Reservation.find();
@@ -100,6 +110,18 @@ export const deleteReservation = async (id: string) => {
     if (!reservation) {
       throw new Error("Reservation not found");
     }
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const cancelReservation = async (code: string) => {
+  try {
+    const reservation = await getReservationByCode(code);
+    if (!reservation) {
+      throw new Error("Reservation not found");
+    }
+    await deleteReservation((reservation._id as IReservation).toString());
   } catch (error) {
     throw error;
   }

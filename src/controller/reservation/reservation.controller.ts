@@ -8,6 +8,7 @@ import {
   getAllReservations,
   checkAvailability,
   deleteReservation,
+  cancelReservation
 } from "@/services/reservation/reservation.service";
 
 // Work in progress
@@ -99,6 +100,21 @@ export const handleDeleteReservation = async (
   ) => {
   try {
     await deleteReservation(req.params.id);
+    successResponse(res, {
+      message: "Reservation deleted successfully",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const handleCancelReservation = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+  ) => {
+  try {
+    await cancelReservation(req.params.code);
     successResponse(res, {
       message: "Reservation deleted successfully",
     });
