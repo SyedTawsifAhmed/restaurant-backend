@@ -9,6 +9,8 @@
   const maxGuests = 50
   const maxParkingSpots = 20
   const maxOccupancyDuration = 120
+  const vatRate = 0.13
+  const serviceCharge = 0.05
   const timeSlots = [
     "11:00", 
     "12:00", 
@@ -36,5 +38,7 @@ export {
   maxGuests,
   maxParkingSpots,
   maxOccupancyDuration,
+  vatRate,
+  serviceCharge,
   timeSlots
 };

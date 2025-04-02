@@ -1,20 +1,29 @@
 import Preorder from "@/models/preorder.model";
 import MenuItem from "@/models/menuItem.model";
 import { createPayment } from "@/services/payment/payment.service";
+import { vatRate, serviceCharge } from "@/config/restaurant";
+
+const calculateTotalAmount = async (items: 
+  { menuItemId: string; quantity: number }[]
+  ) => {
+  let totalAmount = 0;
+  for (const item of items) {
+    const menuItem = await MenuItem.findById(item.menuItemId);
+    if (!menuItem) {
+      throw new Error("Menu item not found");
+    }
+    totalAmount += 
+    (1 + vatRate) * ((menuItem.price * item.quantity) + serviceCharge);
+  }
+  return totalAmount;
+};
 
 export const createPreOrder = async (data: {
   reservationId: string;
   items: { menuItemId: string; quantity: number }[];
   }) => {
   try {
-    let totalAmount = 0;
-    for (const item of data.items) {
-      const menuItem = await MenuItem.findById(item.menuItemId);
-      if (!menuItem) {
-        throw new Error("Menu item not found");
-      }
-      totalAmount += menuItem.price * item.quantity;
-    }
+    const totalAmount = await calculateTotalAmount(data.items);
     const newPreOrder = new Preorder({
       reservationId: data.reservationId,
       items: data.items,
